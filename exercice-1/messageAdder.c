@@ -43,11 +43,11 @@ void messageAdderInit(void){
 	{
 		out.mData[i] = 0;
 	}
-	//TODO
+	pthread_create(&consumer, NULL, sum, NULL);
 }
 
 void messageAdderJoin(void){
-	//TODO
+	pthread_join(consumer, NULL);
 }
 
 static void *sum( void *parameters )
@@ -60,7 +60,7 @@ static void *sum( void *parameters )
 		//TODO
 	}
 	printf("[messageAdder] %d termination\n", gettid());
-	//TODO
+	pthread_exit(NULL);
 }
 
 

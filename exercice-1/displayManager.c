@@ -19,11 +19,11 @@ static void *display( void *parameters );
 
 
 void displayManagerInit(void){
-	//TODO
+	pthread_create(&displayThread, NULL, display, NULL);
 }
 
 void displayManagerJoin(void){
-	//TODO	
+	pthread_join(displayThread, NULL);
 } 
 
 static void *display( void *parameters )
@@ -35,5 +35,5 @@ static void *display( void *parameters )
 		//TODO
 	}
 	printf("[displayManager] %d termination\n", gettid());
-   //TODO
+    pthread_exit(NULL);
 }
