@@ -25,6 +25,13 @@ static void *produce(void *params);
 sem_t *sem_empty;
 sem_t *sem_full;
 
+#define CHECK_SEMAPHORE(sem) \
+if (sem != SEM_FAILED)\
+		return ERROR_SUCCESS;\
+\
+	perror("[sem_open");\
+	return ERROR_INIT;\
+
 pthread_mutex_t mutex_write=PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutexProduceCount = PTHREAD_MUTEX_INITIALIZER;
 

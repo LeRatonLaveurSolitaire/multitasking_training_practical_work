@@ -33,12 +33,12 @@ MSG_BLOCK getCurrentSum(){
 	return currentSum;
 }
 
-static void getConsumedCount(void){
+static void incrementConsumeCount(void){
 	consumeCount++;
 }
 
 unsigned int getConsumedCount(){
-	return consumeCount;
+	return (unsigned int)consumeCount;
 }
 
 
