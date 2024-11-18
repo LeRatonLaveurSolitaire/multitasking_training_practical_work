@@ -73,7 +73,7 @@ unsigned int acquisitionManagerInit(void)
 
 	for (i = 0; i < PRODUCER_COUNT; i++)
 	{
-		//TODO
+		pthread_create(&producers[i], NULL, produce, (void*)i);
 	}
 
 	return ERROR_SUCCESS;
@@ -84,7 +84,7 @@ void acquisitionManagerJoin(void)
 	unsigned int i;
 	for (i = 0; i < PRODUCER_COUNT; i++)
 	{
-		//TODO
+		pthread_join(producers[i], NULL);
 	}
 
 	//TODO
@@ -95,12 +95,18 @@ void *produce(void* params)
 {
 	D(printf("[acquisitionManager]Producer created with id %d\n", gettid()));
 	unsigned int i = 0;
+	unsigned int indexProducer = (unsigned int)params;
 	while (i < PRODUCER_LOOP_LIMIT)
 	{
 		i++;
 		sleep(PRODUCER_SLEEP_TIME+(rand() % 5));
+		MSG_BLOCK mBlock;
+		getInput(indexProducer, &mBlock);
+		if (messageCheck(&mBlock)==0){
+			printf("[acquisitionManager]Message corrupted\n");
+		}
 		//TODO
 	}
 	printf("[acquisitionManager] %d termination\n", gettid());
-	//TODO
+	pthread_exit(NULL);
 }
