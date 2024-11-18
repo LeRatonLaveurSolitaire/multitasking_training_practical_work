@@ -29,7 +29,8 @@ static void *sum( void *parameters );
 
 
 MSG_BLOCK getCurrentSum(){
-	//TODO
+	MSG_BLOCK currentSum = out;
+	return currentSum;
 }
 
 static void getConsumedCount(void){
