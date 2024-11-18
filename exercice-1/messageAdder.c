@@ -57,7 +57,7 @@ void messageAdderJoin(void){
 
 static void *sum( void *parameters )
 {
-	D(printf("[messageAdder]Thread created for sum with id %d\n", gettid()));
+	D(printf("[messageAdder]Thread created for sum with id %d\n", pthread_self()));//gettid()));
 	unsigned int i = 0;
 	while(i<ADDER_LOOP_LIMIT){
 		i++;
@@ -73,7 +73,7 @@ static void *sum( void *parameters )
 		// increment count
 		incrementConsumeCount();
 	}
-	printf("[messageAdder] %d termination\n", gettid());
+	printf("[messageAdder] %d termination\n", pthread_self());//gettid());
 	pthread_exit(NULL);
 }
 

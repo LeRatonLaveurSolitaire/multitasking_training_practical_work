@@ -28,7 +28,7 @@ void displayManagerJoin(void){
 
 static void *display( void *parameters )
 {
-	D(printf("[displayManager]Thread created for display with id %d\n", gettid()));
+	D(printf("[displayManager]Thread created for display with id %d\n", pthread_self()));//gettid()));
 	unsigned int diffCount = 0;
 	while(diffCount < DISPLAY_LOOP_LIMIT){
 		sleep(DISPLAY_SLEEP_TIME);
@@ -42,6 +42,6 @@ static void *display( void *parameters )
 		// display count
 		print(getProducedCount(), getConsumedCount());
 	}
-	printf("[displayManager] %d termination\n", gettid());
+	printf("[displayManager] %d termination\n", pthread_self());//gettid()));
     pthread_exit(NULL);
 }

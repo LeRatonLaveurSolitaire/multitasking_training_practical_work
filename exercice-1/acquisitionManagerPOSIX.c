@@ -25,6 +25,9 @@ static void *produce(void *params);
 sem_t *sem_empty;
 sem_t *sem_full;
 
+#define SEM_FULL_NAME "/full"
+#define SEM_EMPTY_NAME "/empty"
+
 #define CHECK_SEMAPHORE(sem) \
 if (sem != SEM_FAILED)\
 		return ERROR_SUCCESS;\
@@ -54,12 +57,12 @@ static void incrementProducedCount(void);
 static unsigned int createSynchronizationObjects(void)
 {
 	// Initialize semaphores
-	sem_unlink(sem_empty);
-	sem_unlink(sem_full);
+	sem_unlink(SEM_EMPTY_NAME);
+	sem_unlink(SEM_FULL_NAME);
 
 	// Open semaphores
-	sem_empty 	= sem_open(sem_empty, 		O_CREAT, 0644, 255);
-	sem_full 	= sem_open(sem_full, 		O_CREAT, 0644, 0);
+	sem_empty 	= sem_open(SEM_EMPTY_NAME, 		O_CREAT, 0644, 255);
+	sem_full 	= sem_open(SEM_FULL_NAME, 		O_CREAT, 0644, 0);
 
 	// Check semaphores 
 	CHECK_SEMAPHORE(sem_empty);
@@ -170,6 +173,6 @@ void *produce(void* params)
 		// increment count
 		incrementProducedCount();
 	}
-	printf("[acquisitionManager] %d termination\n", gettid());
+	printf("[acquisitionManager] %d termination\n", pthread_self());//gettid());
 	pthread_exit(NULL);
 }
