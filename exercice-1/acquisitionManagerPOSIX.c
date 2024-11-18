@@ -22,7 +22,16 @@ static void *produce(void *params);
 /**
 * Semaphores and Mutex
 */
-//TODO
+sem_t *sem_empty;
+sem_t *sem_full;
+
+pthread_mutex_t mutex_write=PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutexProduceCount = PTHREAD_MUTEX_INITIALIZER;
+
+MSG_BLOCK buffer_data[256];
+int buffer_index_read = 0;
+int buffer_index_write = 0;
+
 
 /*
 * Creates the synchronization elements.
@@ -37,29 +46,72 @@ static void incrementProducedCount(void);
 
 static unsigned int createSynchronizationObjects(void)
 {
+	// Initialize semaphores
+	sem_unlink(sem_empty);
+	sem_unlink(sem_full);
 
-	//TODO
+	// Open semaphores
+	sem_empty 	= sem_open(sem_empty, 		O_CREAT, 0644, 255);
+	sem_full 	= sem_open(sem_full, 		O_CREAT, 0644, 0);
+
+	// Check semaphores 
+	CHECK_SEMAPHORE(sem_empty);
+	CHECK_SEMAPHORE(sem_full);
 	printf("[acquisitionManager]Semaphore created\n");
 	return ERROR_SUCCESS;
 }
 
 static void incrementProducedCount(void)
 {
-	//TODO
+	// Bloque le mutex
+	pthread_mutex_lock(&mutexProduceCount);
+	produceCount++;
+	// Débloque le mutex
+	pthread_mutex_unlock(&mutexProduceCount);
 }
 
 unsigned int getProducedCount(void)
 {
 	unsigned int p = 0;
-	//TODO
+	// Bloque le mutex
+	pthread_mutex_lock(&mutexProduceCount);
+	p = produceCount;
+	// Débloque le mutex
+	pthread_mutex_unlock(&mutexProduceCount);
 	return p;
 }
 
 MSG_BLOCK getMessage(void){
-	//TODO
+	// prendre le sémpahore
+	sem_wait(sem_full);
+	// récupérer l'index 
+	int index_local = buffer_index_read;
+	// incrémenter l'index avec remise à zéro
+	buffer_index_read = (buffer_index_read + 1) % 256;
+	// lire le message
+	MSG_BLOCK message = buffer_data[index_local];
+	// libérer le sémpahore	
+	sem_post(sem_empty);
+	return message;
 }
 
-//TODO create accessors to limit semaphore and mutex usage outside of this C module.
+void writeMessage(MSG_BLOCK message){
+	// prendre le mutex
+	pthread_mutex_lock(&mutex_write);
+	// prendre le sémpahore
+	sem_wait(sem_empty);
+	// récupérer l'index
+	int index_local = buffer_index_write;
+	// incrémenter l'index avec remise à zéro
+	buffer_index_write = (buffer_index_write + 1) % 256;
+	// rendre le mutex
+	pthread_mutex_unlock(&mutex_write);
+	// écrire le message
+	buffer_data[index_local] = message;
+	// libérer le sémpahore
+	sem_post(sem_full);
+}
+
 
 unsigned int acquisitionManagerInit(void)
 {
@@ -86,8 +138,8 @@ void acquisitionManagerJoin(void)
 	{
 		pthread_join(producers[i], NULL);
 	}
-
-	//TODO
+	sem_destroy(sem_empty);
+	sem_destroy(sem_full);
 	printf("[acquisitionManager]Semaphore cleaned\n");
 }
 
@@ -102,10 +154,14 @@ void *produce(void* params)
 		sleep(PRODUCER_SLEEP_TIME+(rand() % 5));
 		MSG_BLOCK mBlock;
 		getInput(indexProducer, &mBlock);
+		// check message
 		if (messageCheck(&mBlock)==0){
 			printf("[acquisitionManager]Message corrupted\n");
 		}
-		//TODO
+		// write message
+		writeMessage(mBlock);
+		// increment count
+		incrementProducedCount();
 	}
 	printf("[acquisitionManager] %d termination\n", gettid());
 	pthread_exit(NULL);

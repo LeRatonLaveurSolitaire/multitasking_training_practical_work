@@ -32,8 +32,12 @@ MSG_BLOCK getCurrentSum(){
 	//TODO
 }
 
+static void getConsumedCount(void){
+	consumeCount++;
+}
+
 unsigned int getConsumedCount(){
-	//TODO
+	return consumeCount;
 }
 
 
@@ -57,7 +61,16 @@ static void *sum( void *parameters )
 	while(i<ADDER_LOOP_LIMIT){
 		i++;
 		sleep(ADDER_SLEEP_TIME);
-		//TODO
+		// lire message
+		MSG_BLOCK newMessage = getMessage();
+		// check message
+		if (messageCheck(&newMessage)==0){
+			printf("[messageAdder]Message corrupted\n");
+		}
+		// add message
+		messageAdd(&out, &newMessage);
+		// increment count
+		incrementConsumeCount();
 	}
 	printf("[messageAdder] %d termination\n", gettid());
 	pthread_exit(NULL);

@@ -32,7 +32,15 @@ static void *display( void *parameters )
 	unsigned int diffCount = 0;
 	while(diffCount < DISPLAY_LOOP_LIMIT){
 		sleep(DISPLAY_SLEEP_TIME);
-		//TODO
+		MSG_BLOCK newSum = getCurrentSum();
+		// check message
+		if (messageCheck(&newSum)==0){
+			printf("[displayManager]Message corrupted\n");
+		}
+		// display sum
+		messageDisplay(&newSum);
+		// display count
+		print(getProducedCount(), getConsumedCount());
 	}
 	printf("[displayManager] %d termination\n", gettid());
     pthread_exit(NULL);
