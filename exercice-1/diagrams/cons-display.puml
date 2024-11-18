@@ -1,0 +1,81 @@
+@startuml
+!pragma teoz true
+box "Terminal process"
+participant bash
+
+
+
+box "MessageAdder process (child process)" #lightblue
+participant "Main" as main
+participant "messageAdder" as messageAdder
+participant "consumer:pthread_t" as consumer
+participant "MsgAdder" as MsgAdder
+participant "Sum" as Sum
+end box
+
+box DisplayManager process (child process)" #lightyellow
+participant "display:pthread_t" as display
+participant "displayManager" as displayManager
+participant "Main" as main2
+end box
+end box
+
+activate bash
+bash -> main: ./MessageAdder
+activate main
+
+main -> messageAdder : MessageAdderInit
+activate messageAdder
+
+messageAdder -> consumer : pthread_create
+activate consumer #FFBBBB
+
+consumer -> MsgAdder : messageAdd
+activate MsgAdder
+
+MsgAdder -> Sum: Ecriture
+activate Sum
+return
+
+MsgAdder -> consumer : return
+deactivate MsgAdder
+
+consumer -> messageAdder: pthread_exit
+deactivate consumer
+
+messageAdder-> main: return
+deactivate messageAdder
+
+main-> bash: return
+deactivate main
+
+bash -> main2 : ./DisplayManager
+activate main2
+
+main2-> displayManager : displayManagerInit
+activate displayManager
+
+displayManager-> display :pthread_create
+activate display
+
+display->MsgAdder: getCurrentSum
+activate MsgAdder
+
+MsgAdder -> Sum: Lecture
+activate Sum
+return
+
+MsgAdder->display: return
+deactivate MsgAdder
+
+display-> displayManager: pthread_exit
+deactivate display
+
+displayManager-> main2 : return
+deactivate displayManager
+
+main2-> bash :return
+deactivate main2
+
+
+@enduml

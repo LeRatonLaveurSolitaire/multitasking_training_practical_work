@@ -1,0 +1,125 @@
+@startuml
+!pragma teoz true
+box "Terminal process"
+participant bash
+
+
+
+box "AcquisitionManager process (child process)" #lightblue
+participant "Main" as main
+participant "AcquisitionManager" as AcqManager
+participant "producer:pthread_t" as producer
+participant "mutex_write:pthread_mutex_t" as mutex
+participant "sem_empty:sem" as sem_empty
+participant "sem_full:sem" as sem_full
+participant "index:int" as index
+participant "buffer:MSG_BLOCK" as buffer
+end box
+
+box "MessageAdder process (child process)" #lightgreen
+participant "consumer:pthread_t" as consumer
+participant "messageAdder" as messageAdder
+participant "Main" as main2
+end box
+end box
+
+activate bash
+bash -> main: ./AcquisitionManager
+activate main
+
+main->AcqManager: AcquisitionManagerInit
+activate AcqManager
+
+AcqManager-> buffer:création
+activate buffer
+
+AcqManager-> index:création
+activate index
+
+AcqManager-> producer:pthread_create
+activate producer
+
+producer -> AcqManager: writeMessage
+note over AcqManager : writeMessage
+
+
+AcqManager-> mutex : pthread_mutex_lock
+activate mutex
+return
+
+AcqManager ->sem_empty :sem_wait
+activate sem_empty
+return
+
+AcqManager ->index: récupère et incrémente
+activate index
+return
+
+AcqManager-> mutex : pthread_mutex_unlock
+activate mutex
+return
+
+AcqManager ->buffer : ecriture
+activate buffer
+return
+
+AcqManager->sem_full: sem_post
+activate sem_full
+return
+
+AcqManager -> producer: return
+
+producer -> AcqManager: pthread_exit
+deactivate producer
+
+
+bash->main2 :./MessageAdder
+activate main2
+
+main2->messageAdder: messageAdderInit
+activate messageAdder
+
+messageAdder->consumer:pthread_create
+activate consumer
+
+
+consumer-> AcqManager :getMessage
+note over AcqManager : get message
+
+AcqManager->sem_full: sem_wait
+activate sem_full
+return
+
+AcqManager ->index: récupère et incrémente
+activate index
+return
+
+AcqManager ->buffer : ecriture
+activate buffer
+return
+
+AcqManager->sem_empty: sem_post
+activate sem_empty
+return
+
+AcqManager->consumer: return value
+
+
+
+consumer -> messageAdder: pthread_exit
+deactivate consumer
+
+messageAdder->main2:return
+deactivate messageAdder
+
+main2->bash: return
+deactivate main2
+
+
+AcqManager->main : return
+deactivate AcqManager
+
+main->bash: return
+deactivate main
+
+@enduml
