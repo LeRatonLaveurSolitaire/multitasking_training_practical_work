@@ -12,9 +12,9 @@
 #include "iAcquisitionManager.h"
 #include "debug.h"
 
-// producer count storage
-_Atomic volatile unsigned int produceCount = 0;
-_Atomic volatile int lock = 0;
+
+//producer count storage
+volatile unsigned int producedCount = 0;
 
 pthread_t producers[4];
 
@@ -78,24 +78,13 @@ static unsigned int createSynchronizationObjects(void)
 
 static void incrementProducedCount(void)
 {
-	// produceCount++;
-	int expected = 0;
-	while (!atomic_compare_exchange(&lock, &expected, 1))
-	{
-	}
-	produceCount++;
-	lock = 0;
+	//TODO
 }
 
 unsigned int getProducedCount(void)
 {
 	unsigned int p = 0;
-	int expected = 0;
-	while (!atomic_compare_exchange(&lock, &expected, 1))
-	{
-	}
-	p = produceCount;
-	lock = 0;
+	//TODO
 	return p;
 }
 
