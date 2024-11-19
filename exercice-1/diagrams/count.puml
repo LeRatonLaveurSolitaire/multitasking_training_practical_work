@@ -1,0 +1,54 @@
+@startuml
+!pragma teoz true
+box "Terminal process"
+
+box "AcquisitionManager" #lightblue
+participant "AcquisitionManager" as AcquisitionManager
+participant "mutex_producer_count:pthread_mutex_t" as mutex
+end box
+
+box "MessageAdder" #lightgreen
+participant "messageAdder" as MessageAdder
+participant "mutex_consumer_count:pthread_mutex_t" as mutex2
+end box
+
+box DisplayManager" #lightyellow
+participant "displayManager" as displayManager
+end box
+end box
+
+activate displayManager
+activate AcquisitionManager
+activate MessageAdder
+displayManager-> AcquisitionManager: getProducerCount
+
+AcquisitionManager->mutex: pthread_mutex_lock
+activate mutex
+return
+
+note over AcquisitionManager : Lecture de la variable producerCount
+
+AcquisitionManager->mutex: pthread_mutex_unlock
+activate mutex
+return
+
+AcquisitionManager->displayManager: return producerCount
+
+
+displayManager-> MessageAdder: getConsumerCount
+
+MessageAdder->mutex2: pthread_mutex_lock
+activate mutex2
+return
+
+note over MessageAdder : Lecture du MSG_BLOCK
+note over MessageAdder : Lecture du consumerCount
+note over MessageAdder : Création de la structure du MSG_BLOCK_with_ConsumedCount
+
+MessageAdder->mutex2: pthread_mutex_unlock
+activate mutex2
+return
+
+MessageAdder->displayManager: return MSG_BLOCK_with_ConsumedCount
+
+@enduml
