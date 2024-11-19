@@ -9,7 +9,7 @@ void messageDisplay(volatile MSG_BLOCK* mBlock){
 	printf("Message\n");
 	D(printf("["));
 	for(i=0;i < DATA_SIZE;i++)
-		(printf("%u ",mBlock->mData[i]));
+		D(printf("%u ",mBlock->mData[i]));
 	D(printf("]\n"));
 }
 

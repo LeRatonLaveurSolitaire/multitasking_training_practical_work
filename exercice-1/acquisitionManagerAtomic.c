@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <fcntl.h>
-#include <stdatomic.h>
 #include "acquisitionManager.h"
 #include "msg.h"
 #include "iSensor.h"
@@ -13,7 +12,7 @@
 #include "debug.h"
 
 // producer count storage
-_atomic volatile unsigned int produceCount = 0;
+_Atomic volatile unsigned int produceCount = 0;
 
 pthread_t producers[4];
 
@@ -39,12 +38,12 @@ pthread_mutex_t mutex_write = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_buffer_index = PTHREAD_MUTEX_INITIALIZER;
 
 MSG_BLOCK buffer_data[256];
-_atomic volatile unsigned int index_data_read = 0;
-_atomic volatile unsigned int index_data_write = 0;
+_Atomic volatile unsigned int index_data_read = 0;
+_Atomic volatile unsigned int index_data_write = 0;
 
 int buffer_index[256];
-_atomic volatile unsigned int index_buffer_read = 0;
-_atomic volatile unsigned int index_buffer_write = 0;
+_Atomic volatile unsigned int index_buffer_read = 0;
+_Atomic volatile unsigned int index_buffer_write = 0;
 
 /*
  * Creates the synchronization elements.
@@ -165,6 +164,7 @@ void *produce(void *params)
 {
 	D(printf("[acquisitionManager]Producer created with id %d\n", gettid()));
 	unsigned int i = 0;
+	unsigned int indexProducer = (unsigned int)params;
 	while (i < PRODUCER_LOOP_LIMIT)
 	{
 		i++;
