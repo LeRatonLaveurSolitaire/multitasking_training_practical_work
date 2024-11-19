@@ -36,11 +36,16 @@ if (sem != SEM_FAILED)\
 	return ERROR_INIT;\
 
 pthread_mutex_t mutex_write=PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex_buffer_index=PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutexProduceCount = PTHREAD_MUTEX_INITIALIZER;
 
 MSG_BLOCK buffer_data[256];
-int buffer_index_read = 0;
-int buffer_index_write = 0;
+int index_data_read = 0;
+int index_data_write = 0;
+
+int buffer_index[256];
+int index_buffer_read = 0;
+int index_buffer_write = 0;
 
 
 /*
@@ -95,9 +100,9 @@ MSG_BLOCK getMessage(void){
 	// prendre le sémpahore
 	sem_wait(sem_full);
 	// récupérer l'index 
-	int index_local = buffer_index_read;
+	int index_local = buffer_index[index_buffer_read];
 	// incrémenter l'index avec remise à zéro
-	buffer_index_read = (buffer_index_read + 1) % 256;
+	index_buffer_read= (index_buffer_read + 1) % 256;
 	// lire le message
 	MSG_BLOCK message = buffer_data[index_local];
 	// libérer le sémpahore	
@@ -106,18 +111,28 @@ MSG_BLOCK getMessage(void){
 }
 
 void writeMessage(MSG_BLOCK message){
-	// prendre le mutex
-	pthread_mutex_lock(&mutex_write);
 	// prendre le sémpahore
 	sem_wait(sem_empty);
+	// prendre le mutex
+	pthread_mutex_lock(&mutex_write);
 	// récupérer l'index
-	int index_local = buffer_index_write;
+	int index_local = index_buffer_write;
 	// incrémenter l'index avec remise à zéro
-	buffer_index_write = (buffer_index_write + 1) % 256;
+	index_buffer_write = (index_buffer_write + 1) % 256;
 	// rendre le mutex
 	pthread_mutex_unlock(&mutex_write);
+	
 	// écrire le message
 	buffer_data[index_local] = message;
+
+	// lock mutex
+	pthread_mutex_lock(&mutex_buffer_index);
+	// mettre l'index dans le buffer de lecture
+	buffer_index[index_buffer_write] = index_local;
+	// incrémente l'index d'écriture
+	index_data_write = (index_data_write + 1) % 256;
+	// unlock mutex
+	pthread_mutex_unlock(&mutex_buffer_index);
 	// libérer le sémpahore
 	sem_post(sem_full);
 }
@@ -173,6 +188,6 @@ void *produce(void* params)
 		// increment count
 		incrementProducedCount();
 	}
-	printf("[acquisitionManager] %d termination\n", pthread_self());//gettid());
+	printf("[acquisitionManager] %d termination\n", gettid());
 	pthread_exit(NULL);
 }

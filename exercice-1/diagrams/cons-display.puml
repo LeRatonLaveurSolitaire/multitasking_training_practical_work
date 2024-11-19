@@ -5,15 +5,16 @@ participant bash
 
 
 
-box "MessageAdder process (child process)" #lightblue
+box "MessageAdder" #lightgreen
 participant "Main" as main
 participant "messageAdder" as messageAdder
 participant "consumer:pthread_t" as consumer
 participant "MsgAdder" as MsgAdder
+participant "mutex:pthread_mutex_t" as mutex
 participant "Sum" as Sum
 end box
 
-box DisplayManager process (child process)" #lightyellow
+box DisplayManager" #lightyellow
 participant "display:pthread_t" as display
 participant "displayManager" as displayManager
 participant "Main" as main2
@@ -33,8 +34,16 @@ activate consumer #FFBBBB
 consumer -> MsgAdder : messageAdd
 activate MsgAdder
 
+MsgAdder->mutex : pthread_mutex_lock
+activate mutex
+return
+
 MsgAdder -> Sum: Ecriture
 activate Sum
+return
+
+MsgAdder->mutex : pthread_mutex_unlock
+activate mutex
 return
 
 MsgAdder -> consumer : return
@@ -56,13 +65,21 @@ main2-> displayManager : displayManagerInit
 activate displayManager
 
 displayManager-> display :pthread_create
-activate display
+activate display #FFBBBB
 
 display->MsgAdder: getCurrentSum
 activate MsgAdder
 
+MsgAdder->mutex : pthread_mutex_lock
+activate mutex
+return
+
 MsgAdder -> Sum: Lecture
 activate Sum
+return
+
+MsgAdder->mutex : pthread_mutex_unlock
+activate mutex
 return
 
 MsgAdder->display: return

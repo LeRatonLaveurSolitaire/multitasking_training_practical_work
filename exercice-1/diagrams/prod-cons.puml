@@ -5,18 +5,20 @@ participant bash
 
 
 
-box "AcquisitionManager process (child process)" #lightblue
+box "AcquisitionManager" #lightblue
 participant "Main" as main
 participant "AcquisitionManager" as AcqManager
-participant "producer:pthread_t" as producer
+participant "producer[i]:pthread_t" as producer
 participant "mutex_write:pthread_mutex_t" as mutex
-participant "sem_empty:sem" as sem_empty
-participant "sem_full:sem" as sem_full
+participant "mutex_index:pthread_mutex_t" as mutex2
+participant "sem_empty:sem(255)" as sem_empty
+participant "sem_full:sem(0)" as sem_full
 participant "index:int" as index
-participant "buffer:MSG_BLOCK" as buffer
+participant "buffer_index:int" as bufferlecture
+participant "buffer_data:MSG_BLOCK" as buffer
 end box
 
-box "MessageAdder process (child process)" #lightgreen
+box "MessageAdder" #lightgreen
 participant "consumer:pthread_t" as consumer
 participant "messageAdder" as messageAdder
 participant "Main" as main2
@@ -33,34 +35,51 @@ activate AcqManager
 AcqManager-> buffer:création
 activate buffer
 
+AcqManager-> bufferlecture:création
+activate bufferlecture
+
 AcqManager-> index:création
 activate index
 
 AcqManager-> producer:pthread_create
-activate producer
+activate producer #FFBBBB
 
 producer -> AcqManager: writeMessage
 note over AcqManager : writeMessage
+
+
+AcqManager ->sem_empty :sem_wait
+activate sem_empty
+return
 
 
 AcqManager-> mutex : pthread_mutex_lock
 activate mutex
 return
 
-AcqManager ->sem_empty :sem_wait
-activate sem_empty
-return
-
 AcqManager ->index: récupère et incrémente
 activate index
 return
+
 
 AcqManager-> mutex : pthread_mutex_unlock
 activate mutex
 return
 
-AcqManager ->buffer : ecriture
+AcqManager ->buffer : ecriture de la data
 activate buffer
+return
+
+AcqManager-> mutex2 : pthread_mutex_lock
+activate mutex2
+return
+
+AcqManager ->bufferlecture: écriture de l'index
+activate bufferlecture
+return
+
+AcqManager-> mutex2 : pthread_mutex_unlock
+activate mutex2
 return
 
 AcqManager->sem_full: sem_post
@@ -80,7 +99,7 @@ main2->messageAdder: messageAdderInit
 activate messageAdder
 
 messageAdder->consumer:pthread_create
-activate consumer
+activate consumer #FFBBBB
 
 
 consumer-> AcqManager :getMessage
@@ -90,11 +109,15 @@ AcqManager->sem_full: sem_wait
 activate sem_full
 return
 
-AcqManager ->index: récupère et incrémente
+AcqManager ->index: récupère l'index du buffer index
 activate index
 return
 
-AcqManager ->buffer : ecriture
+AcqManager ->bufferlecture: récupère l'index pour le buffer data
+activate bufferlecture
+return
+
+AcqManager ->buffer : Lecture
 activate buffer
 return
 
