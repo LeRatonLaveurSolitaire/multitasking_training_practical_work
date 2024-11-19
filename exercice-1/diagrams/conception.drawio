@@ -7,44 +7,44 @@
         <mxCell id="nDVz6QAk0CL7eOiTC_jA-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="fEL-3-x19ATJo7vxv6HR-24" target="nDVz6QAk0CL7eOiTC_jA-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-230" y="-37" />
-              <mxPoint x="-230" y="8" />
+              <mxPoint x="-220" y="223" />
+              <mxPoint x="-220" y="268" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="fEL-3-x19ATJo7vxv6HR-24" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MessageAdder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- consumer: pthread_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- currentSum: MSG_BLOCK&lt;br style=&quot;padding: 0px ; margin: 0px&quot;&gt;- consumedCount: Integer&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- sum()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+ messageAdderInit()&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ messageAdderJoin()&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ getCurrentSum()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;getConsumedCount()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;incrementConsumeCount()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-438.71" y="-160" width="198.71" height="195" as="geometry" />
+        <mxCell id="fEL-3-x19ATJo7vxv6HR-24" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MessageAdder&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- consumer: pthread_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- currentSum: MSG_BLOCK&lt;br style=&quot;padding: 0px ; margin: 0px&quot;&gt;- consumedCount: Integer&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;-&amp;nbsp;mutex: ptread_mutex_t&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- sum()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;+ messageAdderInit()&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ messageAdderJoin()&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ getCurrentSum()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;getConsumedCount()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;incrementConsumeCount()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="-428.71" y="100" width="198.71" height="195" as="geometry" />
         </mxCell>
         <mxCell id="fEL-3-x19ATJo7vxv6HR-27" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;MultitaskingAccumulator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ main()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-658.71" y="-385" width="160" height="140" as="geometry" />
+          <mxGeometry x="-648.71" y="-125" width="160" height="140" as="geometry" />
         </mxCell>
         <mxCell id="fEL-3-x19ATJo7vxv6HR-35" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;fillColor=#000000;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-27" target="fEL-3-x19ATJo7vxv6HR-54" edge="1">
           <mxGeometry x="-1" y="3" relative="1" as="geometry">
-            <mxPoint x="-638.71" y="-185" as="sourcePoint" />
-            <mxPoint x="-478.71" y="-185" as="targetPoint" />
+            <mxPoint x="-628.71" y="75" as="sourcePoint" />
+            <mxPoint x="-468.71" y="75" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="fEL-3-x19ATJo7vxv6HR-39" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;fillColor=#000000;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-27" target="fEL-3-x19ATJo7vxv6HR-24" edge="1">
           <mxGeometry x="-1" y="3" relative="1" as="geometry">
-            <mxPoint x="-488.71" y="-305" as="sourcePoint" />
-            <mxPoint x="-428.71" y="-342" as="targetPoint" />
+            <mxPoint x="-478.71" y="-45" as="sourcePoint" />
+            <mxPoint x="-418.71" y="-82" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="fEL-3-x19ATJo7vxv6HR-54" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;AcquisitionManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- producers[4]: pthread_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- m1: pthread_mutex_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- producedCount: Integer&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- sem : semaphore&amp;nbsp;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- produce()&lt;/p&gt;&amp;nbsp;+ acquisitionManagerInit()&lt;br&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ acquisitionManagerJoin()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;getProducedCount()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;incrementProducedCount()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ createSynchronizationObjects()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-438.71" y="-435" width="205" height="195" as="geometry" />
+        <mxCell id="fEL-3-x19ATJo7vxv6HR-54" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;AcquisitionManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- producers[4]: pthread_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- mutex_write: pthread_mutex_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- mutex_buffer_index: pthread_mutex_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- mutexProduceCount: pthread_mutex_t&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- producedCount: Integer&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- sem_empty : semaphore&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- sem_full : semaphore&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;-&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;buffer_data :&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;MSG_BLOCK[256]&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- index_data_read : int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- index_data_write : int&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- buffer_index : int[256]&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- index_buffer_read : int&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- index_buffer_write :int&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- produce()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getMessage()&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ writeMessage()&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ acquisitionManagerInit()&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ acquisitionManagerJoin()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;getProducedCount()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+&amp;nbsp;incrementProducedCount()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ createSynchronizationObjects()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
+          <mxGeometry x="-428.71" y="-280" width="228.71" height="350" as="geometry" />
         </mxCell>
         <mxCell id="fEL-3-x19ATJo7vxv6HR-64" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;fillColor=#000000;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-27" target="fEL-3-x19ATJo7vxv6HR-65" edge="1">
           <mxGeometry x="0.4516" y="190" relative="1" as="geometry">
-            <mxPoint x="-488.71" y="-270" as="sourcePoint" />
-            <mxPoint x="-428.71" y="-195" as="targetPoint" />
+            <mxPoint x="-478.71" y="-10" as="sourcePoint" />
+            <mxPoint x="-418.71" y="65" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="fEL-3-x19ATJo7vxv6HR-65" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;DisplayManager&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;display: pthread_t&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;- display()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ displayManagerInit()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ displayManagerJoin()&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-438.71" y="75" width="160" height="140" as="geometry" />
+          <mxGeometry x="-428.71" y="335" width="160" height="140" as="geometry" />
         </mxCell>
         <mxCell id="fEL-3-x19ATJo7vxv6HR-66" value="«dataType»&lt;br&gt;&lt;b&gt;MSG_BLOCK&lt;/b&gt;" style="html=1;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-660" y="-195" width="110" height="50" as="geometry" />
+          <mxGeometry x="-650" y="65" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-8" value="&lt;b&gt;MultitaskingAccumulator&lt;/b&gt;" style="html=1;" parent="1" vertex="1">
           <mxGeometry x="-1260" y="-215" width="200" height="90" as="geometry" />
@@ -240,21 +240,21 @@
           <mxGeometry x="-741.3339344262295" y="-645" width="82.62295081967213" height="30" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-148" value="«interface»&#xa;IAcquisitionManager" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-160" y="-435" width="180" height="100" as="geometry" />
+          <mxGeometry x="-50" y="-135" width="180" height="100" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-149" value="+ getProducedCount(): Integer&#xa;+ getMessage():MSG_BLOCK&#xa;&#xa;&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="pLuQ7xj04wKehVz2EtiJ-148" vertex="1">
           <mxGeometry y="40" width="180" height="60" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-150" value="«interface»&#xa;IMessageAdder" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=38;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-40" y="-110" width="220" height="98" as="geometry" />
+          <mxGeometry x="-40" y="115" width="220" height="98" as="geometry" />
         </mxCell>
         <mxCell id="fXRlClugTOTBc5S8y01M-6" value="+ getCurrentSum(): MSG_BLOCK&#xa;+ getConsumedCount(): Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="pLuQ7xj04wKehVz2EtiJ-150" vertex="1">
           <mxGeometry y="38" width="220" height="60" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-153" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-54" target="pLuQ7xj04wKehVz2EtiJ-149" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="-350" y="85" as="sourcePoint" />
-            <mxPoint x="-190" y="85" as="targetPoint" />
+            <mxPoint x="-340" y="345" as="sourcePoint" />
+            <mxPoint x="-180" y="345" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Lbqkt2lzDJ4rxtl4HgO9-1" value="Implement" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];;labelBackgroundColor=#ffffff;" parent="pLuQ7xj04wKehVz2EtiJ-153" vertex="1" connectable="0">
@@ -264,8 +264,8 @@
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-154" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=-0.004;entryY=-0.081;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-24" target="fXRlClugTOTBc5S8y01M-6" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="-223.71000000000004" y="-217.5" as="sourcePoint" />
-            <mxPoint x="-150" y="-220" as="targetPoint" />
+            <mxPoint x="-213.71000000000004" y="42.5" as="sourcePoint" />
+            <mxPoint x="-140" y="40" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Lbqkt2lzDJ4rxtl4HgO9-2" value="Implement" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];;labelBackgroundColor=#ffffff;" parent="pLuQ7xj04wKehVz2EtiJ-154" vertex="1" connectable="0">
@@ -275,46 +275,46 @@
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-155" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;rounded=1;" parent="1" source="fEL-3-x19ATJo7vxv6HR-65" target="pLuQ7xj04wKehVz2EtiJ-148" edge="1">
           <mxGeometry x="0.8815" width="160" relative="1" as="geometry">
-            <mxPoint x="-240" y="75" as="sourcePoint" />
-            <mxPoint x="-80" y="75" as="targetPoint" />
+            <mxPoint x="-230" y="335" as="sourcePoint" />
+            <mxPoint x="-70" y="335" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="200" y="90" />
-              <mxPoint x="200" y="-410" />
+              <mxPoint x="210" y="350" />
+              <mxPoint x="210" y="-150" />
             </Array>
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-156" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-24" target="pLuQ7xj04wKehVz2EtiJ-148" edge="1">
           <mxGeometry x="0.5481" y="20" width="160" relative="1" as="geometry">
-            <mxPoint x="-210" y="-275" as="sourcePoint" />
-            <mxPoint x="-50" y="-275" as="targetPoint" />
+            <mxPoint x="-200" y="-15" as="sourcePoint" />
+            <mxPoint x="-40" y="-15" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="-80" y="-275" />
+              <mxPoint x="-70" y="-15" />
             </Array>
             <mxPoint x="20" y="-20" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="pLuQ7xj04wKehVz2EtiJ-157" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.508;entryY=1.008;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-65" edge="1">
+        <mxCell id="pLuQ7xj04wKehVz2EtiJ-157" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.445;entryY=1.042;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-65" edge="1" target="fXRlClugTOTBc5S8y01M-6">
           <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="-268.71000000000004" y="-75" as="sourcePoint" />
-            <mxPoint x="1.2800000000002" y="-7.503999999999905" as="targetPoint" />
+            <mxPoint x="-258.71000000000004" y="185" as="sourcePoint" />
+            <mxPoint x="11.2800000000002" y="252.4960000000001" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1" y="65" />
+              <mxPoint x="58" y="330" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-158" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;«interface»&lt;br&gt;&lt;b&gt;ISensor&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ getInput(int i): MSG_BLOCK&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-431.21" y="-605" width="190" height="113" as="geometry" />
+          <mxGeometry x="-409.34999999999997" y="-470" width="190" height="113" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-159" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;«interface»&lt;br&gt;&lt;b&gt;IDisplay&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ messageDisplay(MSG_BLOCK mBlock)&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ print(Integer producedCount, Integer consumedCount)&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-190" y="155" width="310" height="120" as="geometry" />
+          <mxGeometry x="-180" y="415" width="310" height="120" as="geometry" />
         </mxCell>
         <mxCell id="pLuQ7xj04wKehVz2EtiJ-160" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="fEL-3-x19ATJo7vxv6HR-65" target="pLuQ7xj04wKehVz2EtiJ-159" edge="1">
           <mxGeometry x="0.43" y="10" width="160" relative="1" as="geometry">
-            <mxPoint x="-268.71000000000004" y="120" as="sourcePoint" />
-            <mxPoint x="-68.7199999999998" y="25.320000000000164" as="targetPoint" />
+            <mxPoint x="-258.71000000000004" y="380" as="sourcePoint" />
+            <mxPoint x="-58.7199999999998" y="285.32000000000016" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="-250" y="215" />
+              <mxPoint x="-240" y="475" />
             </Array>
             <mxPoint as="offset" />
           </mxGeometry>
@@ -326,7 +326,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nDVz6QAk0CL7eOiTC_jA-1" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Msg&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- messageAdd()&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;&lt;span&gt;- messageCheck()&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;shadow=0;" parent="1" vertex="1">
-          <mxGeometry x="-214.99999999999997" y="-45" width="120" height="105" as="geometry" />
+          <mxGeometry x="-179.99999999999997" y="210" width="120" height="105" as="geometry" />
         </mxCell>
         <mxCell id="sWfBH13LbjcDb2dTJ5xe-1" value="Exigence Y" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-1150" y="-925" width="120" height="60" as="geometry" />
