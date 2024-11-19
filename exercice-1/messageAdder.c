@@ -30,13 +30,15 @@ static void incrementConsumeCount(void);
 static void *sum( void *parameters );
 
 
-MSG_BLOCK getCurrentSum(){
+MSG_BLOCK_with_ConsumedCount getCurrentSum(){
 	// lock mutex
 	pthread_mutex_lock(&mutex);
 	MSG_BLOCK currentSum = out;
+	unsigned int valconsumedCount = getConsumedCount();
+	MSG_BLOCK_with_ConsumedCount currentSumWithCount={currentSum, valconsumedCount};
 	// unlock mutex
 	pthread_mutex_unlock(&mutex);
-	return currentSum;
+	return currentSumWithCount;
 }
 
 static void incrementConsumeCount(void){

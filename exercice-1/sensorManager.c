@@ -10,7 +10,7 @@ void getInput(const unsigned int input, volatile MSG_BLOCK* mBlock){
 	D(printf("Get message for input %u \n",j));
 	mBlock->checksum = 0;
 	for(i=0;i < DATA_SIZE;i++){
-		mBlock->mData[i] = rand();
+		mBlock->mData[i] = rand()%2;
 		mBlock->checksum ^= mBlock->mData[i];
 	}
 	return;

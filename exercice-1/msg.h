@@ -11,6 +11,12 @@ typedef struct MSG_BLOCK_TAG
 	unsigned int mData[DATA_SIZE];
 } MSG_BLOCK;
 
+typedef struct MSG_BLOCK_TAG2
+{
+	MSG_BLOCK mBlock;
+	unsigned int consumedCount;
+} MSG_BLOCK_with_ConsumedCount;
+
 /**
 * Displays the message content
 * @param mBlock the message pointer
